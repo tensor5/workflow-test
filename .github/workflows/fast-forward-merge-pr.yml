@@ -1,6 +1,9 @@
 name: Fast forward merge PR
 
-on: status
+on:
+  check_suite:
+    types:
+      - completed
 
 jobs:
   fast_forward_merge:
