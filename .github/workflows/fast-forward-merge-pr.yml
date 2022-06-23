@@ -1,0 +1,12 @@
+name: Fast forward merge PR
+
+on: status
+
+jobs:
+  fast_forward_merge:
+    runs-on: ubuntu-22.04
+    steps:
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo $EVENT_CONTEXT

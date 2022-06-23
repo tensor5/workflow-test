@@ -1,0 +1,12 @@
+name: Sleep and succeed
+
+on:
+  - pull_request
+
+jobs:
+  sleep_and_succeed:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: |
+          sleep 20 &&
+          echo Done
