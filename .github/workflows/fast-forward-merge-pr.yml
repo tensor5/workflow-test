@@ -1,15 +1,19 @@
 name: Fast forward merge PR
 
 on:
-  check_suite:
-    types:
-      - completed
+  schedule:
+    cron:
+      - 0,15,30,45 * * * *
 
 jobs:
   fast_forward_merge:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v3
       - env:
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+          REPOSITORY: ${{ github.repository}}
         run: |
-          echo $EVENT_CONTEXT
+          branch=$(gh pr status -R $REPOSITORY --json headRefName,mergeStateStatus --jq '.createdBy | map(select(.mergeStateStatus == "CLEAN")) | .[-1].headRefName')
+          if [ -n "$branch" ]; then
+            git rebase --ff-only "$branch"
+          fi
