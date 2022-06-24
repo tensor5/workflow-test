@@ -2,17 +2,22 @@ name: Fast forward merge PR
 
 on:
   schedule:
-    - cron: "0,15,30,45 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   fast_forward_merge:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository}}
         run: |
           branch=$(gh pr status -R $REPOSITORY --json headRefName,mergeStateStatus --jq '.createdBy | map(select(.mergeStateStatus == "CLEAN")) | .[-1].headRefName')
           if [ -n "$branch" ]; then
+            git config user.name github-actions
+            git config user.email github-actions@github.com
             git rebase --ff-only "$branch"
           fi
