@@ -3,7 +3,7 @@ name: Fast forward merge PR
 on:
   schedule:
     cron:
-      - 0,15,30,45 * * * *
+      - "0,15,30,45 * * * *"
 
 jobs:
   fast_forward_merge:
