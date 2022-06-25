@@ -16,8 +16,8 @@ jobs:
           REPOSITORY: ${{ github.repository }}
         name: Fast forward merge
         run: |
-          gh pr status -R "$REPOSITORY"
-          branch=$(gh pr status -R "$REPOSITORY" --json headRefName,mergeStateStatus --jq '.createdBy | map(select(.mergeStateStatus == "CLEAN")) | .[-1].headRefName')
+          gh pr list -R "$REPOSITORY"
+          branch=$(gh pr list -R "$REPOSITORY" --json headRefName,mergeStateStatus --jq 'map(select(.mergeStateStatus == "CLEAN")) | .[-1].headRefName')
           if [ -n "$branch" ]; then
             git config user.name github-actions
             git config user.email github-actions@github.com
