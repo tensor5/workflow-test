@@ -21,6 +21,6 @@ jobs:
           if [ -n "$branch" ]; then
             git config user.name github-actions
             git config user.email github-actions@github.com
-            git rebase --ff-only "origin/$branch"
+            git merge --ff-only "origin/$branch"
             git push
           fi
