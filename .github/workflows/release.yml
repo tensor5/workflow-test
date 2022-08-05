@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  release-please:
+    name: Release Please
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+    runs-on: ubuntu-22.04
+    steps:
+      - id: release-please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          bump-minor-pre-major: true
+          package-name: workflow-test
+          release-type: go
+  upload-artifacts:
+    if: ${{ jobs.release-please.outputs.release_created }}
+    name: Upload artifacts
+    needs: release-please
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Upload
+        run: echo 'Uploading artifact'
