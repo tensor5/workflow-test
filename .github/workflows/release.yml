@@ -20,7 +20,7 @@ jobs:
           package-name: workflow-test
           release-type: go
   upload-artifacts:
-    if: ${{ jobs.release-please.outputs.release_created }}
+    if: ${{ needs.release-please.outputs.release_created }}
     name: Upload artifacts
     needs: release-please
     runs-on: ubuntu-22.04
