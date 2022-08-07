@@ -1,7 +1,10 @@
 name: Sleep and succeed
 
 on:
-  - pull_request
+  pull_request:
+    paths-ignore:
+      # Don't run on PR create by Release Please (it would require a PAT)
+      - CHANGELOG.md
 
 jobs:
   sleep_and_succeed:
