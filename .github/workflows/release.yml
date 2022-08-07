@@ -19,6 +19,7 @@ jobs:
           bump-minor-pre-major: true
           package-name: workflow-test
           release-type: go
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
   upload-artifacts:
     if: ${{ needs.release-please.outputs.release_created }}
     name: Upload artifacts
