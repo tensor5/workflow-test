@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/tensor5/workflow-test/compare/v1.0.0...v1.1.0) (2022-08-07)
+
+
+### Features
+
+* add more lorem ipsum ([ddbb9ea](https://github.com/tensor5/workflow-test/commit/ddbb9eadb786ed3d14e57002d0706504e55607b0))
+
+
+### Bug Fixes
+
+* remove paragraph ([d0f2b6f](https://github.com/tensor5/workflow-test/commit/d0f2b6fb7754d0043759c726baf6f1c33382555f))
+
 ## 1.0.0 (2022-08-05)
 
 
