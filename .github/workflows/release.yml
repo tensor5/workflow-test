@@ -9,22 +9,11 @@ on:
 jobs:
   release-please:
     name: Release Please
-    outputs:
-      release_created: ${{ steps.release-please.outputs.release_created }}
     runs-on: ubuntu-22.04
     steps:
-      - id: release-please
-        uses: google-github-actions/release-please-action@v3
+      - uses: google-github-actions/release-please-action@v3
         with:
           bump-minor-pre-major: true
           package-name: workflow-test
           release-type: go
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
-  upload-artifacts:
-    if: ${{ needs.release-please.outputs.release_created }}
-    name: Upload artifacts
-    needs: release-please
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Upload
-        run: echo 'Uploading artifact'

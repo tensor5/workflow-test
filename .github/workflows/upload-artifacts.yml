@@ -1,0 +1,15 @@
+name: Upload artifacts
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  upload-artifacts:
+    name: Upload artifacts
+    needs: release-please
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Upload
+        run: echo 'Uploading artifact'
